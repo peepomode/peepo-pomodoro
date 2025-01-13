@@ -10,6 +10,9 @@ const resetButton = document.getElementById('reset');
 const statusText = document.getElementById('status-text');
 const workModeButton = document.getElementById('work-mode');
 const restModeButton = document.getElementById('rest-mode');
+const taskInput = document.getElementById('task-input');
+const addWorkTimeButton = document.getElementById('add-work-time');
+const addRestTimeButton = document.getElementById('add-rest-time');
 
 function updateTimer() {
     const minutes = Math.floor(timeLeft / 60);
@@ -74,6 +77,19 @@ function resetTimer() {
     }
 }
 
+function addFiveMinutes(isWork) {
+    timeLeft += 5 * 60;
+    updateTimer();
+}
+
+function checkTaskInput() {
+    if (taskInput.value.trim() !== '') {
+        startButton.style.display = 'inline-block';
+    } else {
+        startButton.style.display = 'none';
+    }
+}
+
 // Initialize
 setWorkMode();
 
@@ -82,4 +98,7 @@ startButton.addEventListener('click', startTimer);
 pauseButton.addEventListener('click', pauseTimer);
 resetButton.addEventListener('click', resetTimer);
 workModeButton.addEventListener('click', setWorkMode);
-restModeButton.addEventListener('click', setRestMode); 
+restModeButton.addEventListener('click', setRestMode);
+taskInput.addEventListener('input', checkTaskInput);
+addWorkTimeButton.addEventListener('click', () => addFiveMinutes(true));
+addRestTimeButton.addEventListener('click', () => addFiveMinutes(false)); 

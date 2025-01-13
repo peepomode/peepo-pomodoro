@@ -90,4 +90,35 @@ body {
     .pepe-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+.task-input {
+    margin: 1rem 0;
+}
+
+.task-input input {
+    padding: 0.5rem;
+    width: 80%;
+    font-size: 1rem;
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+}
+
+.time-adjust button {
+    font-size: 1rem;
+    margin: 1rem 0.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.time-adjust button:hover {
+    background-color: #45a049;
+}
+
+#start {
+    display: none;
 } 
