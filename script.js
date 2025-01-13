@@ -13,6 +13,7 @@ const restModeButton = document.getElementById('rest-mode');
 const taskInput = document.getElementById('task-input');
 const addTimeButton = document.getElementById('add-time');
 const taskDisplay = document.getElementById('task-display');
+const taskSubmitButton = document.getElementById('task-submit');
 
 function updateTimer() {
     const minutes = Math.floor(timeLeft / 60);
@@ -87,15 +88,18 @@ function addFiveMinutes() {
     updateTimer();
 }
 
-function checkTaskInput(event) {
-    // Only proceed if Enter key is pressed
-    if (event.key === 'Enter' && taskInput.value.trim() !== '') {
+function submitTask() {
+    if (taskInput.value.trim() !== '') {
         startButton.style.display = 'inline-block';
         taskDisplay.textContent = taskInput.value;
         taskInput.disabled = true;
-        event.preventDefault(); // Prevent form submission if within a form
-    } else if (event.key === 'Enter' && taskInput.value.trim() === '') {
-        event.preventDefault(); // Prevent empty submissions
+    }
+}
+
+function checkTaskInput(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        submitTask();
     }
 }
 
@@ -109,3 +113,4 @@ resetButton.addEventListener('click', resetTimer);
 workModeButton.addEventListener('click', setWorkMode);
 taskInput.addEventListener('keypress', checkTaskInput);
 addTimeButton.addEventListener('click', addFiveMinutes);
+taskSubmitButton.addEventListener('click', submitTask);
