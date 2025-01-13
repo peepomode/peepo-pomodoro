@@ -87,15 +87,15 @@ function addFiveMinutes() {
     updateTimer();
 }
 
-function checkTaskInput() {
-    if (taskInput.value.trim() !== '') {
+function checkTaskInput(event) {
+    // Only proceed if Enter key is pressed
+    if (event.key === 'Enter' && taskInput.value.trim() !== '') {
         startButton.style.display = 'inline-block';
         taskDisplay.textContent = taskInput.value;
         taskInput.disabled = true;
-    } else {
-        startButton.style.display = 'none';
-        taskDisplay.textContent = '';
-        taskInput.disabled = false;
+        event.preventDefault(); // Prevent form submission if within a form
+    } else if (event.key === 'Enter' && taskInput.value.trim() === '') {
+        event.preventDefault(); // Prevent empty submissions
     }
 }
 
@@ -107,6 +107,5 @@ startButton.addEventListener('click', startTimer);
 pauseButton.addEventListener('click', pauseTimer);
 resetButton.addEventListener('click', resetTimer);
 workModeButton.addEventListener('click', setWorkMode);
-restModeButton.addEventListener('click', setRestMode);
-taskInput.addEventListener('input', checkTaskInput);
+taskInput.addEventListener('keypress', checkTaskInput);
 addTimeButton.addEventListener('click', addFiveMinutes);
