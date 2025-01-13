@@ -46,6 +46,7 @@ function setRestMode() {
 
 function startTimer() {
     if (timerId === null) {
+        taskInput.disabled = true;
         timerId = setInterval(() => {
             timeLeft--;
             updateTimer();
@@ -75,6 +76,10 @@ function resetTimer() {
     } else {
         setRestMode();
     }
+    taskInput.disabled = false;
+    taskInput.value = '';
+    taskDisplay.textContent = '';
+    startButton.style.display = 'none';
 }
 
 function addFiveMinutes() {
