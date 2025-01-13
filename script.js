@@ -91,9 +91,11 @@ function checkTaskInput() {
     if (taskInput.value.trim() !== '') {
         startButton.style.display = 'inline-block';
         taskDisplay.textContent = taskInput.value;
+        taskInput.disabled = true;
     } else {
         startButton.style.display = 'none';
         taskDisplay.textContent = '';
+        taskInput.disabled = false;
     }
 }
 
